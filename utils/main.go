@@ -61,11 +61,11 @@ func appendAlias(fileName string, newEntry string) {
 
 func ListAlias(fileName string) {
 	if fileDoesNotExist(fileName) {
-		fmt.Println("You dont have any wrapping points")
+		fmt.Println("You dont have any alias points")
 	} else {
 		aliases, err := ioutil.ReadFile(fileName)
 		if err != nil {
-			fmt.Println("Unable to list your wrapping points")
+			fmt.Println("Unable to list your alias points")
 			return
 		}
 		fmt.Println(string(aliases))
@@ -124,7 +124,7 @@ func CallAlias(fileName string, alias string) {
 			fmt.Println(string(output))
 
 		} else {
-			fmt.Println("Wrapping point does not exist")
+			fmt.Println("Alias point does not exist")
 		}
 	}
 
