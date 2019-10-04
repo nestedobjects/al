@@ -84,7 +84,7 @@ func AddAlias(fileName string, args []string) {
 			options = args[3:]
 		}
 
-		newEntry := alias + " -> " + command + strings.Join(options[:], " ") + "\n"
+		newEntry := alias + " -> " + command + " " + strings.Join(options[:], " ") + "\n"
 		aliases := make(map[string]string)
 
 		if fileDoesNotExist(fileName) {
@@ -130,4 +130,12 @@ func CallAlias(fileName string, alias string) {
 		}
 	}
 
+}
+
+func ResetAlias(fileName string) {
+	err := os.Remove(fileName)
+	if err != nil {
+		fmt.Println("Unable to clear your existing alias")
+		return
+	}
 }

@@ -25,7 +25,7 @@ func main() {
 			case "rm":
 				fmt.Println("Removing alias")
 			case "reset":
-				fmt.Println("Clear all alias")
+				utils.ResetAlias(fileName)
 			default:
 				utils.CallAlias(fileName, argsWithoutProg[0])
 			}
