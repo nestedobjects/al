@@ -81,7 +81,7 @@ func AddAlias(fileName string, args []string) {
 		options := []string{}
 
 		if len(args) > 3 {
-			options = args[2:]
+			options = args[3:]
 		}
 
 		newEntry := alias + " -> " + command + strings.Join(options[:], " ") + "\n"
@@ -112,6 +112,8 @@ func CallAlias(fileName string, alias string) {
 		fmt.Println("You dont have any alias")
 	} else {
 		aliases := make(map[string]string)
+
+		readAlias(fileName, aliases)
 
 		if _, present := aliases[alias]; present {
 
