@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/rafi993/al/utils"
+	"github.com/rafi993/al/file"
 )
 
 func main() {
@@ -19,15 +19,15 @@ func main() {
 			command := argsWithoutProg[0]
 			switch command {
 			case "list":
-				utils.ListAlias(fileName)
+				file.ListAlias(fileName)
 			case "add":
-				utils.AddAlias(fileName, argsWithoutProg)
+				file.AddAlias(fileName, argsWithoutProg)
 			case "rm":
-				utils.RemoveAlias(fileName, argsWithoutProg[1])
+				file.RemoveAlias(fileName, argsWithoutProg[1])
 			case "reset":
-				utils.ResetAlias(fileName)
+				file.ResetAlias(fileName)
 			default:
-				utils.CallAlias(fileName, argsWithoutProg[0])
+				file.CallAlias(fileName, argsWithoutProg[0])
 			}
 
 		} else {
