@@ -59,6 +59,19 @@ func appendAlias(fileName string, newEntry string) {
 	}
 }
 
+func overWriteFile(fileName string, newAliases string) {
+	ResetAlias(fileName)
+	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY, 0600)
+	defer file.Close()
+	if err != nil {
+		fmt.Println("Unable to read your existing alias")
+		return
+	}
+	if _, err = file.WriteString(newAliases); err != nil {
+		fmt.Println("Unable remove alias")
+	}
+}
+
 func ListAlias(fileName string) {
 	if fileDoesNotExist(fileName) {
 		fmt.Println("You dont have any alias points")
@@ -137,5 +150,23 @@ func ResetAlias(fileName string) {
 	if err != nil {
 		fmt.Println("Unable to clear your existing alias")
 		return
+	}
+}
+
+func RemoveAlias(fileName string, alias string) {
+	aliases := make(map[string]string)
+	readAlias(fileName, aliases)
+
+	if _, ok := aliases[alias]; ok {
+		newAliases := ""
+		delete(aliases, alias)
+
+		for k, v := range aliases {
+			newAliases = k + " -> " + v + "" + newAliases
+		}
+
+		overWriteFile(fileName, newAliases)
+	} else {
+		fmt.Println("Alias does not exist")
 	}
 }

@@ -23,7 +23,7 @@ func main() {
 			case "add":
 				utils.AddAlias(fileName, argsWithoutProg)
 			case "rm":
-				fmt.Println("Removing alias")
+				utils.RemoveAlias(fileName, argsWithoutProg[1])
 			case "reset":
 				utils.ResetAlias(fileName)
 			default:
